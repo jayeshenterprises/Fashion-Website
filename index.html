@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SheStyles — Curated Fashion for Indian Women</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FAF7F2;--warm:#F5EFE6;--blush:#E8C4B0;
+  --rose:#C47A5A;--rose-dark:#A35E41;--deep:#1E1410;
+  --mid:#6B4E3D;--light:#B89080;--accent:#D4956A;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--deep);font-family:'Jost',sans-serif;font-weight:300;overflow-x:hidden}
+
+/* VIEWS */
+.view{display:none}.view.active{display:block}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:300;background:rgba(250,247,242,0.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(196,122,90,0.1);height:70px;display:flex;justify-content:space-between;align-items:center;padding:0 52px}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.85rem;font-weight:600;color:var(--deep);text-decoration:none;letter-spacing:0.04em;cursor:pointer}
+.logo span{color:var(--rose);font-style:italic}
+.nav-links{display:flex;align-items:center;gap:38px}
+.nav-a{font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid);text-decoration:none;font-weight:500;transition:color 0.2s;cursor:pointer;background:none;border:none;font-family:'Jost',sans-serif}
+.nav-a:hover{color:var(--rose)}
+.nav-pin{background:var(--deep);color:white;padding:10px 24px;border-radius:50px;text-decoration:none;font-size:0.7rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;transition:all 0.25s}
+.nav-pin:hover{background:var(--rose);transform:translateY(-1px)}
+
+/* ═══ HOME PAGE ═══ */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:70px 52px 60px;gap:48px;position:relative;overflow:hidden;background:var(--cream)}
+.hero-orb1{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(232,196,176,0.45) 0%,transparent 70%);right:-100px;top:50%;transform:translateY(-50%);pointer-events:none}
+.hero-orb2{position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(212,149,106,0.2) 0%,transparent 70%);left:5%;bottom:10%;pointer-events:none}
+.hero-left{position:relative;z-index:2}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(196,122,90,0.08);color:var(--rose);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:500;padding:8px 20px;border-radius:50px;margin-bottom:30px;border:1px solid rgba(196,122,90,0.18)}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.4rem,5.2vw,5.2rem);line-height:1.06;font-weight:600;margin-bottom:24px;color:var(--deep)}
+.hero h1 em{color:var(--rose);font-style:italic}
+.hero-sub{font-size:0.98rem;line-height:1.85;color:var(--mid);margin-bottom:40px;max-width:400px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:52px}
+.btn-fill{background:var(--deep);color:var(--cream);padding:15px 36px;border-radius:50px;text-decoration:none;font-size:0.78rem;font-weight:500;letter-spacing:0.08em;transition:all 0.25s;display:inline-block;cursor:pointer;border:none;font-family:'Jost',sans-serif}
+.btn-fill:hover{background:var(--rose);transform:translateY(-2px);box-shadow:0 8px 28px rgba(196,122,90,0.3)}
+.btn-ring{border:1.5px solid rgba(196,122,90,0.35);color:var(--mid);padding:15px 36px;border-radius:50px;text-decoration:none;font-size:0.78rem;font-weight:500;letter-spacing:0.08em;transition:all 0.25s;display:inline-block}
+.btn-ring:hover{border-color:var(--rose);color:var(--rose)}
+.hero-stats{display:flex;gap:0}
+.hstat{text-align:center;padding:0 28px;border-right:1px solid rgba(196,122,90,0.2)}
+.hstat:first-child{padding-left:0}
+.hstat:last-child{border-right:none}
+.hstat-n{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:var(--deep);font-weight:600;display:block;line-height:1}
+.hstat-l{font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--light);display:block;margin-top:5px}
+
+.hero-right{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+.hcard{border-radius:22px;overflow:hidden;background:linear-gradient(145deg,#EDD5C5,#F8EDE5);display:flex;align-items:center;justify-content:center;font-size:3rem;box-shadow:0 10px 36px rgba(30,20,16,0.1);transition:transform 0.4s cubic-bezier(0.34,1.4,0.64,1);aspect-ratio:3/4}
+.hcard:hover{transform:translateY(-6px) scale(1.01)}
+.hcard:nth-child(2){margin-top:32px}
+.hcard:nth-child(3){margin-top:-24px}
+.hcard img{width:100%;height:100%;object-fit:cover;display:block}
+
+.marquee-wrap{background:var(--deep);padding:13px 0;overflow:hidden}
+.marquee-track{display:inline-flex;animation:marquee 22s linear infinite;white-space:nowrap}
+.marquee-item{color:rgba(250,247,242,0.45);font-size:0.63rem;letter-spacing:0.22em;text-transform:uppercase;padding:0 30px}
+.marquee-item .dot{color:var(--rose);margin-right:12px}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+.philosophy{padding:100px 52px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.phil-left .s-label{margin-bottom:12px}
+.phil-left .s-title{margin-bottom:0}
+.phil-right{display:flex;flex-direction:column;gap:28px}
+.phil-item{display:flex;gap:20px;align-items:flex-start}
+.phil-icon{width:48px;height:48px;border-radius:14px;background:rgba(196,122,90,0.1);border:1px solid rgba(196,122,90,0.2);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.phil-text h4{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--deep);margin-bottom:5px}
+.phil-text p{font-size:0.85rem;line-height:1.7;color:var(--mid)}
+
+.cat-showcase{padding:80px 52px;background:var(--deep)}
+.cat-showcase .s-label{color:var(--accent)}
+.cat-showcase .s-title{color:var(--cream)}
+.cat-showcase .s-title em{color:var(--rose)}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;margin-top:48px}
+.cat-tile{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:28px 18px;text-align:center;cursor:pointer;transition:all 0.25s;text-decoration:none;display:block}
+.cat-tile:hover{background:rgba(196,122,90,0.15);border-color:rgba(196,122,90,0.3);transform:translateY(-3px)}
+.cat-tile-icon{font-size:2rem;margin-bottom:10px;display:block}
+.cat-tile-name{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--cream);margin-bottom:3px}
+.cat-tile-count{font-size:0.65rem;color:rgba(250,247,242,0.3);letter-spacing:0.08em}
+
+.featured-section{padding:100px 52px;background:var(--warm)}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:26px}
+.feat-card{background:white;border-radius:24px;overflow:hidden;box-shadow:0 2px 20px rgba(30,20,16,0.06);transition:all 0.35s cubic-bezier(0.34,1.2,0.64,1);cursor:pointer}
+.feat-card:hover{transform:translateY(-8px);box-shadow:0 24px 56px rgba(30,20,16,0.12)}
+.feat-img{aspect-ratio:3/4;position:relative;background:linear-gradient(145deg,#EDD5C5,#FAF0EA);display:flex;align-items:center;justify-content:center;font-size:4rem;color:var(--light);overflow:hidden}
+.feat-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.feat-badge{position:absolute;top:14px;left:14px;background:var(--rose);color:white;font-size:0.58rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:5px 12px;border-radius:50px;z-index:2}
+.feat-info{padding:20px 22px 24px}
+.feat-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--deep);margin-bottom:16px;line-height:1.4}
+.feat-btn{display:block;text-align:center;background:var(--deep);color:white;padding:11px;border-radius:14px;text-decoration:none;font-size:0.75rem;font-weight:500;letter-spacing:0.08em;transition:all 0.2s}
+.feat-btn:hover{background:var(--rose)}
+
+.view-all-section{text-align:center;padding:20px 52px 80px;background:var(--warm)}
+.view-all-pill{display:inline-flex;align-items:center;gap:10px;border:1.5px solid var(--blush);color:var(--mid);padding:14px 44px;border-radius:50px;cursor:pointer;font-size:0.8rem;font-weight:500;letter-spacing:0.08em;transition:all 0.25s;background:transparent;font-family:'Jost',sans-serif}
+.view-all-pill:hover{border-color:var(--rose);color:var(--rose);background:rgba(196,122,90,0.04)}
+
+/* FOOTER */
+footer{background:#120C07;color:rgba(250,247,242,0.38);padding:64px 52px 36px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:52px}
+.foot-brand .foot-logo{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--cream);font-weight:600;display:block;margin-bottom:12px}
+.foot-brand .foot-logo span{color:var(--rose);font-style:italic}
+.foot-brand p{font-size:0.8rem;line-height:1.75;color:rgba(250,247,242,0.35);max-width:260px}
+.foot-col h5{font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(250,247,242,0.28);margin-bottom:18px;font-weight:500}
+.foot-col a{display:block;font-size:0.8rem;color:rgba(250,247,242,0.4);text-decoration:none;margin-bottom:12px;transition:color 0.2s;cursor:pointer}
+.foot-col a:hover{color:var(--rose)}
+.footer-divider{border:none;border-top:1px solid rgba(255,255,255,0.06);margin-bottom:28px}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;font-size:0.72rem}
+
+/* ═══ SHOP PAGE ═══ */
+#shop-page{background:var(--cream);min-height:100vh;padding-top:70px}
+.shop-hero{background:var(--deep);padding:60px 52px 48px;position:relative;overflow:hidden}
+.shop-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 50% 80% at 80% 50%,rgba(196,122,90,0.12) 0%,transparent 70%)}
+.shop-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,4vw,3.6rem);color:var(--cream);font-weight:600;position:relative;margin-bottom:8px}
+.shop-hero h1 em{font-style:italic;color:var(--rose)}
+.shop-hero p{color:rgba(250,247,242,0.45);font-size:0.88rem;position:relative}
+.shop-layout{display:grid;grid-template-columns:260px 1fr;gap:36px;padding:44px 52px;max-width:1400px;margin:0 auto}
+.sidebar{position:sticky;top:90px;align-self:start}
+.sidebar-card{background:white;border-radius:20px;padding:28px;box-shadow:0 2px 16px rgba(30,20,16,0.05);margin-bottom:18px}
+.sidebar-title{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--light);font-weight:500;margin-bottom:18px}
+.clear-filters{background:none;border:none;color:var(--rose);font-size:0.72rem;cursor:pointer;font-family:'Jost',sans-serif;letter-spacing:0.06em;margin-left:auto;display:block;padding:0}
+.sidebar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.sidebar-header .sidebar-title{margin-bottom:0}
+.cat-filter-list{display:flex;flex-direction:column;gap:6px}
+.cat-filter-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;cursor:pointer;transition:all 0.2s;font-size:0.82rem;color:var(--mid)}
+.cat-filter-item:hover{background:rgba(196,122,90,0.07);color:var(--rose)}
+.cat-filter-item.active{background:rgba(196,122,90,0.1);color:var(--rose);font-weight:500}
+.cat-filter-icon{font-size:1rem;width:20px;text-align:center}
+.cat-filter-count{margin-left:auto;font-size:0.65rem;color:var(--light)}
+.price-range{margin-top:6px}
+.price-inputs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.price-input{border:1.5px solid rgba(196,122,90,0.2);border-radius:10px;padding:9px 12px;font-size:0.82rem;color:var(--deep);font-family:'Jost',sans-serif;outline:none;width:100%;transition:border-color 0.2s}
+.price-input:focus{border-color:var(--rose)}
+.price-label{font-size:0.68rem;color:var(--light);margin-bottom:5px;letter-spacing:0.06em}
+.apply-price-btn{width:100%;background:var(--deep);color:white;border:none;padding:10px;border-radius:10px;font-size:0.75rem;font-weight:500;font-family:'Jost',sans-serif;cursor:pointer;transition:all 0.2s;letter-spacing:0.06em}
+.apply-price-btn:hover{background:var(--rose)}
+.sort-options{display:flex;flex-direction:column;gap:6px}
+.sort-opt{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;cursor:pointer;font-size:0.82rem;color:var(--mid);transition:all 0.2s}
+.sort-opt:hover{background:rgba(196,122,90,0.07);color:var(--rose)}
+.sort-opt.active{background:rgba(196,122,90,0.1);color:var(--rose);font-weight:500}
+.sort-dot{width:6px;height:6px;border-radius:50%;background:var(--light);flex-shrink:0;transition:background 0.2s}
+.sort-opt.active .sort-dot{background:var(--rose)}
+.shop-main{}
+.shop-topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;flex-wrap:wrap;gap:12px}
+.shop-count{font-size:0.82rem;color:var(--light)}
+.shop-count span{color:var(--deep);font-weight:500}
+.active-filters{display:flex;gap:8px;flex-wrap:wrap}
+.active-filter-tag{display:flex;align-items:center;gap:6px;background:rgba(196,122,90,0.1);color:var(--rose);font-size:0.7rem;padding:5px 12px;border-radius:50px;border:1px solid rgba(196,122,90,0.2)}
+.active-filter-tag button{background:none;border:none;cursor:pointer;color:var(--rose);font-size:0.8rem;line-height:1;padding:0;margin-left:2px}
+.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:22px}
+.prod-card{background:white;border-radius:22px;overflow:hidden;box-shadow:0 2px 14px rgba(30,20,16,0.05);transition:all 0.32s cubic-bezier(0.34,1.2,0.64,1);cursor:pointer}
+.prod-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(30,20,16,0.1)}
+.prod-img-wrap{aspect-ratio:3/4;position:relative;background:linear-gradient(145deg,#EDD5C5,#FAF0EA);display:flex;align-items:center;justify-content:center;font-size:3.5rem;color:var(--light);overflow:hidden}
+.prod-img-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.prod-badge{position:absolute;top:12px;left:12px;background:var(--rose);color:white;font-size:0.58rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:4px 12px;border-radius:50px;z-index:2}
+.prod-info{padding:18px 20px 22px}
+.prod-name{font-family:'Cormorant Garamond',serif;font-size:1.08rem;color:var(--deep);margin-bottom:14px;line-height:1.4}
+.prod-bottom{display:flex;justify-content:space-between;align-items:center}
+.prod-price{font-size:1.05rem;color:var(--rose);font-weight:500;font-family:'Cormorant Garamond',serif}
+.shop-btn{background:var(--deep);color:white;padding:8px 18px;border-radius:50px;text-decoration:none;font-size:0.72rem;font-weight:500;letter-spacing:0.06em;transition:all 0.2s;border:none;cursor:pointer;font-family:'Jost',sans-serif}
+.shop-btn:hover{background:var(--rose)}
+.skel{background:white;border-radius:22px;overflow:hidden}
+.skel-img{aspect-ratio:3/4;background:linear-gradient(90deg,#f0e8e0 25%,#f8f2ec 50%,#f0e8e0 75%);background-size:200%;animation:sh 1.4s infinite}
+.skel-body{padding:18px 20px}
+.skel-l{height:11px;background:linear-gradient(90deg,#f0e8e0 25%,#f8f2ec 50%,#f0e8e0 75%);background-size:200%;animation:sh 1.4s infinite;border-radius:6px;margin-bottom:9px}
+.skel-l.s{width:55%}
+@keyframes sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.no-products{grid-column:1/-1;text-align:center;padding:80px 20px;color:var(--light)}
+.no-products p{font-size:0.95rem;margin-top:10px}
+
+/* SECTION COMMON */
+.s-label{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--rose);font-weight:500;margin-bottom:10px}
+.s-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.2vw,2.8rem);font-weight:600;color:var(--deep);line-height:1.15}
+.s-title em{font-style:italic;color:var(--rose)}
+
+/* ═══ PRODUCT DETAIL PAGE ═══ */
+#product-page{background:var(--cream);min-height:100vh;padding-top:70px}
+.product-back{padding:24px 52px 0;display:flex;align-items:center;gap:8px}
+.product-back button{background:none;border:none;color:var(--mid);font-size:0.8rem;cursor:pointer;font-family:'Jost',sans-serif;letter-spacing:0.06em;display:flex;align-items:center;gap:6px;transition:color 0.2s;padding:0}
+.product-back button:hover{color:var(--rose)}
+.product-detail{display:grid;grid-template-columns:1fr 1fr;gap:64px;padding:36px 52px 80px;max-width:1100px;margin:0 auto;align-items:start}
+.pd-img-wrap{border-radius:28px;overflow:hidden;background:linear-gradient(145deg,#EDD5C5,#FAF0EA);aspect-ratio:3/4;position:relative;display:flex;align-items:center;justify-content:center;font-size:6rem;color:var(--light);box-shadow:0 20px 60px rgba(30,20,16,0.12)}
+.pd-img-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pd-badge{position:absolute;top:18px;left:18px;background:var(--rose);color:white;font-size:0.65rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:6px 16px;border-radius:50px;z-index:2}
+.pd-info{display:flex;flex-direction:column;gap:0;padding-top:8px}
+.pd-cat{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--rose);font-weight:500;margin-bottom:12px}
+.pd-name{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3vw,2.6rem);color:var(--deep);line-height:1.15;font-weight:600;margin-bottom:20px}
+.pd-price{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--rose);font-weight:600;margin-bottom:28px}
+.pd-divider{border:none;border-top:1px solid rgba(196,122,90,0.15);margin-bottom:28px}
+.pd-desc{font-size:0.9rem;line-height:1.9;color:var(--mid);margin-bottom:32px}
+.pd-shop-btn{display:block;text-align:center;background:var(--deep);color:white;padding:18px 36px;border-radius:50px;text-decoration:none;font-size:0.85rem;font-weight:500;letter-spacing:0.1em;transition:all 0.25s;margin-bottom:16px}
+.pd-shop-btn:hover{background:var(--rose);transform:translateY(-2px);box-shadow:0 8px 28px rgba(196,122,90,0.3)}
+.pd-copy-btn{width:100%;background:transparent;border:1.5px solid rgba(196,122,90,0.3);color:var(--mid);padding:14px 36px;border-radius:50px;font-size:0.78rem;font-weight:500;letter-spacing:0.08em;cursor:pointer;font-family:'Jost',sans-serif;transition:all 0.25s;margin-bottom:24px}
+.pd-copy-btn:hover{border-color:var(--rose);color:var(--rose)}
+.pd-affiliate{font-size:0.72rem;color:var(--light);line-height:1.65;text-align:center;padding:14px 0;border-top:1px solid rgba(196,122,90,0.1)}
+
+/* ═══ ABOUT PAGE ═══ */
+#about-page{background:var(--cream);min-height:100vh;padding-top:70px}
+.about-page-hero{background:var(--deep);padding:80px 52px;position:relative;overflow:hidden;text-align:center}
+.about-page-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(196,122,90,0.1) 0%,transparent 70%)}
+.about-page-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,5vw,4.2rem);color:var(--cream);font-weight:600;position:relative;margin-bottom:16px}
+.about-page-hero h1 em{color:var(--rose);font-style:italic}
+.about-page-hero p{color:rgba(250,247,242,0.5);font-size:0.95rem;position:relative;max-width:500px;margin:0 auto;line-height:1.85}
+.about-story{padding:80px 52px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1100px;margin:0 auto}
+.about-story-text .s-label{margin-bottom:12px}
+.about-story-text .s-title{margin-bottom:24px}
+.about-story-body{font-size:0.93rem;line-height:1.9;color:var(--mid);margin-bottom:18px}
+.about-story-visual{background:var(--warm);border-radius:28px;padding:48px 36px;display:flex;flex-direction:column;gap:28px}
+.about-stat-item{text-align:center}
+.about-stat-n{font-family:'Cormorant Garamond',serif;font-size:3rem;color:var(--deep);font-weight:600;display:block;line-height:1}
+.about-stat-l{font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--light);display:block;margin-top:6px}
+.about-stat-divider{border:none;border-top:1px solid rgba(196,122,90,0.15)}
+.about-chips-section{padding:0 52px 48px;max-width:1100px;margin:0 auto}
+.about-chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:0}
+.about-chip{background:rgba(196,122,90,0.09);color:var(--rose);font-size:0.75rem;letter-spacing:0.08em;padding:8px 20px;border-radius:50px;border:1px solid rgba(196,122,90,0.2)}
+.about-disc-section{background:var(--warm);padding:48px 52px;margin-top:0}
+.about-disc-inner{max-width:700px;margin:0 auto;text-align:center}
+.about-disc-inner .s-label{margin-bottom:12px}
+.about-disc-inner p{font-size:0.88rem;line-height:1.85;color:var(--mid)}
+
+/* ═══ PRIVACY PAGE ═══ */
+#privacy-page{background:var(--cream);min-height:100vh;padding-top:70px}
+.privacy-hero{background:var(--deep);padding:60px 52px;position:relative;overflow:hidden}
+.privacy-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 40% 70% at 80% 50%,rgba(196,122,90,0.1) 0%,transparent 70%)}
+.privacy-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.2rem);color:var(--cream);font-weight:600;position:relative;margin-bottom:8px}
+.privacy-hero p{color:rgba(250,247,242,0.4);font-size:0.8rem;position:relative}
+.privacy-content{max-width:760px;margin:0 auto;padding:60px 52px 80px}
+.privacy-section{margin-bottom:40px}
+.privacy-section h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--deep);margin-bottom:12px;font-weight:600}
+.privacy-section p{font-size:0.88rem;line-height:1.9;color:var(--mid)}
+
+/* ═══ CONTACT PAGE ═══ */
+#contact-page{background:var(--cream);min-height:100vh;padding-top:70px}
+.contact-page-hero{background:var(--deep);padding:60px 52px;position:relative;overflow:hidden}
+.contact-page-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 50% 80% at 80% 50%,rgba(196,122,90,0.12) 0%,transparent 70%)}
+.contact-page-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.2rem);color:var(--cream);font-weight:600;position:relative;margin-bottom:8px}
+.contact-page-hero h1 em{color:var(--rose);font-style:italic}
+.contact-page-hero p{color:rgba(250,247,242,0.45);font-size:0.88rem;position:relative}
+.contact-form-outer{max-width:680px;margin:0 auto;padding:60px 52px 80px}
+.contact-form-wrap{background:white;border-radius:24px;overflow:hidden;box-shadow:0 2px 28px rgba(30,20,16,0.07)}
+.contact-form-wrap iframe{display:block;width:100%;background:transparent}
+
+/* ADMIN */
+.admin-wrap{min-height:100vh;background:#1A1208;font-family:'Jost',sans-serif}
+.admin-hdr{background:#231609;border-bottom:1px solid rgba(196,122,90,0.18);padding:18px 32px;display:flex;justify-content:space-between;align-items:center}
+.admin-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:#FAF7F2;font-weight:600}
+.admin-logo span{color:var(--rose);font-style:italic}
+.admin-sub{font-size:0.68rem;color:rgba(250,247,242,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px}
+.back-btn{background:rgba(196,122,90,0.1);color:var(--rose);border:1px solid rgba(196,122,90,0.22);padding:9px 20px;border-radius:50px;cursor:pointer;font-size:0.74rem;font-family:'Jost',sans-serif;font-weight:500;letter-spacing:0.07em;transition:all 0.2s}
+.back-btn:hover{background:var(--rose);color:white}
+.admin-body{padding:28px 32px;display:grid;grid-template-columns:370px 1fr;gap:26px;max-width:1200px}
+.acard{background:#231609;border-radius:20px;padding:26px;border:1px solid rgba(196,122,90,0.13)}
+.acard h3{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:#FAF7F2;margin-bottom:20px}
+.afield{margin-bottom:15px}
+.afield label{display:block;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(250,247,242,0.35);margin-bottom:6px;font-weight:500}
+.afield input,.afield select{width:100%;background:#1A1208;border:1.5px solid rgba(196,122,90,0.16);border-radius:10px;padding:10px 14px;color:#FAF7F2;font-family:'Jost',sans-serif;font-size:0.86rem;outline:none;transition:border-color 0.2s}
+.afield input:focus,.afield select:focus{border-color:var(--rose)}
+.afield select option{background:#1A1208}
+.afield-row{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.a-add-btn{width:100%;background:var(--rose);color:white;border:none;padding:13px;border-radius:10px;font-size:0.86rem;font-weight:500;font-family:'Jost',sans-serif;letter-spacing:0.06em;cursor:pointer;transition:all 0.2s;margin-top:4px}
+.a-add-btn:hover{background:var(--rose-dark)}
+.a-add-btn:disabled{opacity:0.45;cursor:not-allowed}
+.alist-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;flex-wrap:wrap;gap:10px}
+.alist-hdr h3{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:#FAF7F2}
+.asearch{background:#1A1208;border:1.5px solid rgba(196,122,90,0.16);border-radius:50px;padding:8px 16px;color:#FAF7F2;font-family:'Jost',sans-serif;font-size:0.78rem;outline:none;width:195px}
+.asearch:focus{border-color:var(--rose)}
+.asearch::placeholder{color:rgba(250,247,242,0.2)}
+.astats{display:flex;gap:11px;margin-bottom:18px;flex-wrap:wrap}
+.astat{background:#1A1208;border:1px solid rgba(196,122,90,0.1);border-radius:10px;padding:10px 16px}
+.astat-n{font-family:'Cormorant Garamond',serif;font-size:1.45rem;color:var(--rose);font-weight:600}
+.astat-l{font-size:0.6rem;color:rgba(250,247,242,0.25);text-transform:uppercase;letter-spacing:0.1em}
+.alist{display:flex;flex-direction:column;gap:9px;max-height:560px;overflow-y:auto;padding-right:3px}
+.alist::-webkit-scrollbar{width:3px}
+.alist::-webkit-scrollbar-thumb{background:rgba(196,122,90,0.2);border-radius:3px}
+.aitem{background:#1A1208;border-radius:11px;padding:13px 15px;border:1px solid rgba(196,122,90,0.08);display:flex;justify-content:space-between;align-items:center;gap:11px;transition:border-color 0.2s}
+.aitem:hover{border-color:rgba(196,122,90,0.22)}
+.aitem-info{flex:1;min-width:0}
+.aitem-name{font-size:0.86rem;color:#FAF7F2;font-weight:500;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.aitem-meta{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.aitem-cat{font-size:0.62rem;color:rgba(250,247,242,0.25)}
+.aitem-feat{font-size:0.62rem;color:var(--rose)}
+.aitem-price{font-size:0.8rem;color:var(--accent);font-weight:500;white-space:nowrap}
+.aitem-actions{display:flex;gap:7px;align-items:center;flex-shrink:0}
+.apin{background:rgba(196,122,90,0.1);color:var(--rose);border:1px solid rgba(196,122,90,0.2);padding:5px 12px;border-radius:7px;cursor:pointer;font-size:0.68rem;font-family:'Jost',sans-serif;font-weight:500;transition:all 0.2s;white-space:nowrap}
+.apin:hover{background:var(--rose);color:white}
+.adel{background:rgba(200,60,60,0.08);color:rgba(220,100,100,0.5);border:1px solid rgba(200,60,60,0.12);width:28px;height:28px;border-radius:7px;cursor:pointer;font-size:0.8rem;transition:all 0.2s;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.adel:hover{background:rgba(200,60,60,0.2);color:#FF6B6B}
+.aempty{text-align:center;padding:44px 20px;color:rgba(250,247,242,0.15);font-size:0.84rem}
+
+/* Edit button */
+.aedit{background:rgba(100,160,100,0.08);color:rgba(100,180,100,0.7);border:1px solid rgba(100,160,100,0.18);width:28px;height:28px;border-radius:7px;cursor:pointer;font-size:0.8rem;transition:all 0.2s;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.aedit:hover{background:rgba(100,180,100,0.2);color:#6FCF6F}
+
+/* Edit Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.72);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity 0.25s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal-box{background:#231609;border-radius:22px;padding:30px;width:100%;max-width:440px;border:1px solid rgba(196,122,90,0.2);transform:translateY(20px);transition:transform 0.25s}
+.modal-overlay.open .modal-box{transform:translateY(0)}
+.modal-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:#FAF7F2;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center}
+.modal-close{background:none;border:none;color:rgba(250,247,242,0.35);font-size:1.2rem;cursor:pointer;transition:color 0.2s;padding:0}
+.modal-close:hover{color:var(--rose)}
+.modal-save{width:100%;background:var(--rose);color:white;border:none;padding:13px;border-radius:10px;font-size:0.86rem;font-weight:500;font-family:'Jost',sans-serif;letter-spacing:0.06em;cursor:pointer;transition:all 0.2s;margin-top:8px}
+.modal-save:hover{background:var(--rose-dark)}
+.modal-save:disabled{opacity:0.45;cursor:not-allowed}
+
+.toast{position:fixed;bottom:22px;right:22px;z-index:999;background:var(--deep);color:var(--cream);padding:12px 20px;border-radius:12px;font-size:0.8rem;font-weight:500;box-shadow:0 8px 28px rgba(0,0,0,0.26);border-left:3px solid var(--rose);transform:translateY(80px);opacity:0;transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1);pointer-events:none}
+.toast.show{transform:translateY(0);opacity:1}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.hero-left>*{animation:fadeUp 0.6s ease both}
+.hero-left>*:nth-child(1){animation-delay:0.08s}
+.hero-left>*:nth-child(2){animation-delay:0.16s}
+.hero-left>*:nth-child(3){animation-delay:0.24s}
+.hero-left>*:nth-child(4){animation-delay:0.32s}
+.hero-left>*:nth-child(5){animation-delay:0.4s}
+
+@media(max-width:1100px){
+  .hero{grid-template-columns:1fr;padding:90px 28px 60px}
+  .hero-right{display:none}
+  .philosophy{grid-template-columns:1fr;gap:40px;padding:70px 28px}
+  .about-story{grid-template-columns:1fr;gap:36px;padding:60px 28px}
+  .cat-showcase,.featured-section,.view-all-section{padding-left:28px;padding-right:28px}
+  nav{padding:0 24px}
+  .shop-layout{grid-template-columns:1fr;padding:28px 24px}
+  .sidebar{position:static;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .shop-hero{padding:48px 24px 36px}
+  .footer-grid{grid-template-columns:1fr 1fr;padding:0}
+  footer{padding:48px 28px 28px}
+  .product-detail{grid-template-columns:1fr;gap:36px;padding:28px}
+  .product-back{padding:20px 28px 0}
+  .privacy-content{padding:40px 28px 60px}
+  .about-chips-section{padding:0 28px 36px}
+  .about-disc-section{padding:40px 28px}
+  .contact-form-outer{padding:40px 28px 60px}
+  .about-page-hero{padding:60px 28px}
+  .privacy-hero,.contact-page-hero{padding:48px 28px}
+}
+@media(max-width:640px){
+  .hero-stats{flex-wrap:wrap;gap:16px}
+  .hstat{border-right:none;padding:0}
+  .sidebar{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;align-items:flex-start;gap:10px}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ HOME VIEW ══════════ -->
+<div id="home-page" class="view active">
+
+<nav>
+  <span class="logo" onclick="goHome()">She<span>Styles</span></span>
+  <div class="nav-links">
+    <span class="nav-a" onclick="goHome()">Home</span>
+    <span class="nav-a" onclick="goShop()">Shop</span>
+    <span class="nav-a" onclick="goAbout()">About</span>
+    <span class="nav-a" onclick="goContact()">Contact</span>
+    <a href="https://pinterest.com/shestylesofficial" class="nav-pin" target="_blank">📌 Pinterest</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-orb1"></div>
+  <div class="hero-orb2"></div>
+  <div class="hero-left">
+    <div class="hero-tag">✦ Curated Fashion for Indian Women</div>
+    <h1>Style That<br>Feels Like <em>You</em></h1>
+    <p class="hero-sub">Handpicked outfits for every occasion — effortless casuals, festive elegance, and everything in between.</p>
+    <div class="hero-btns">
+      <button class="btn-fill" onclick="goShop()">Explore Collection</button>
+      <a href="https://pinterest.com/shestylesofficial" class="btn-ring" target="_blank">Follow on Pinterest →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><span class="hstat-n" id="hero-count">—</span><span class="hstat-l">Curated Pieces</span></div>
+      <div class="hstat"><span class="hstat-n">100%</span><span class="hstat-l">Handpicked</span></div>
+      <div class="hstat"><span class="hstat-n">Daily</span><span class="hstat-l">New Pins</span></div>
+    </div>
+  </div>
+  <div class="hero-right" id="hero-cards">
+    <div class="hcard" id="hc0">👗</div>
+    <div class="hcard" id="hc1">👚</div>
+    <div class="hcard" id="hc2">🧥</div>
+    <div class="hcard" id="hc3">👘</div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track" id="marquee-track"></div>
+</div>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy">
+  <div class="phil-left">
+    <div class="s-label">Why SheStyles</div>
+    <div class="s-title">Fashion Made <em>Simple</em></div>
+  </div>
+  <div class="phil-right">
+    <div class="phil-item"><div class="phil-icon">🎯</div><div class="phil-text"><h4>Expertly Curated</h4><p>Every piece is handpicked — no endless scrolling, just outfits that actually work.</p></div></div>
+    <div class="phil-item"><div class="phil-icon">💫</div><div class="phil-text"><h4>Real Styles, Real Women</h4><p>Inspired by everyday Indian women — college, work, cafes, festivals, and everything in between.</p></div></div>
+    <div class="phil-item"><div class="phil-icon">🛍️</div><div class="phil-text"><h4>Shop Instantly</h4><p>Find something you love — one click takes you straight to the product. No hassle.</p></div></div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="cat-showcase">
+  <div class="s-label">Browse by Mood</div>
+  <div class="s-title" style="color:var(--cream)">Shop by <em>Category</em></div>
+  <div class="cat-grid" id="cat-grid"></div>
+</section>
+
+<!-- FEATURED -->
+<section class="featured-section">
+  <div class="s-label">Trending Now</div>
+  <div class="s-title" style="margin-bottom:44px">Most <em>Loved</em> Pieces</div>
+  <div class="feat-grid" id="feat-grid">
+    <div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--light)">Loading...</div>
+  </div>
+</section>
+<div class="view-all-section">
+  <button class="view-all-pill" onclick="goShop()">View All Products &nbsp;→</button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="foot-brand">
+      <span class="foot-logo">She<span>Styles</span></span>
+      <p>Curated fashion for every Indian woman — handpicked with love, styled for real life.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Explore</h5>
+      <a onclick="goHome()">Home</a>
+      <a onclick="goShop()">Shop All</a>
+      <a onclick="goAbout()">About Us</a>
+    </div>
+    <div class="foot-col">
+      <h5>Connect & Legal</h5>
+      <a href="https://pinterest.com/shestylesofficial" target="_blank">Pinterest</a>
+      <a onclick="goContact()">Contact</a>
+      <a onclick="goPrivacy()">Privacy Policy</a>
+    </div>
+  </div>
+  <hr class="footer-divider">
+  <div class="footer-bottom">
+    <span>© 2026 SheStyles. All rights reserved.</span>
+  </div>
+</footer>
+
+</div><!-- /home-page -->
+
+<!-- ══════════ SHOP VIEW ══════════ -->
+<div id="shop-page" class="view">
+
+<nav>
+  <span class="logo" onclick="goHome()">She<span>Styles</span></span>
+  <div class="nav-links">
+    <span class="nav-a" onclick="goHome()">Home</span>
+    <span class="nav-a" onclick="goShop()" style="color:var(--rose)">Shop</span>
+    <span class="nav-a" onclick="goAbout()">About</span>
+    <span class="nav-a" onclick="goContact()">Contact</span>
+    <a href="https://pinterest.com/shestylesofficial" class="nav-pin" target="_blank">📌 Pinterest</a>
+  </div>
+</nav>
+
+<div class="shop-hero">
+  <div class="shop-hero-bg"></div>
+  <h1>The <em>Collection</em></h1>
+  <p>Every piece, handpicked for you</p>
+</div>
+
+<div class="shop-layout">
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-header">
+        <span class="sidebar-title">Category</span>
+        <button class="clear-filters" onclick="clearAllFilters()">Clear all</button>
+      </div>
+      <div class="cat-filter-list" id="cat-filter-list"></div>
+    </div>
+    <div class="sidebar-card">
+      <div class="sidebar-title">Sort By</div>
+      <div class="sort-options" id="sort-options">
+        <div class="sort-opt active" onclick="setSort('newest')"><span class="sort-dot"></span>Newest First</div>
+        <div class="sort-opt" onclick="setSort('oldest')"><span class="sort-dot"></span>Oldest First</div>
+      </div>
+    </div>
+  </aside>
+  <div class="shop-main">
+    <div class="shop-topbar">
+      <div class="shop-count" id="shop-count">Loading...</div>
+      <div class="active-filters" id="active-filters"></div>
+    </div>
+    <div class="shop-grid" id="shop-grid"></div>
+  </div>
+</div>
+
+<footer style="margin-top:60px">
+  <div class="footer-grid">
+    <div class="foot-brand">
+      <span class="foot-logo">She<span>Styles</span></span>
+      <p>Curated fashion for every Indian woman — handpicked with love.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Explore</h5>
+      <a onclick="goHome()">Home</a>
+      <a onclick="goShop()">Shop All</a>
+    </div>
+    <div class="foot-col">
+      <h5>Connect & Legal</h5>
+      <a href="https://pinterest.com/shestylesofficial" target="_blank">Pinterest</a>
+      <a onclick="goPrivacy()">Privacy Policy</a>
+    </div>
+  </div>
+  <hr class="footer-divider">
+  <div class="footer-bottom">
+    <span>© 2026 SheStyles. All rights reserved.</span>
+  </div>
+</footer>
+
+</div><!-- /shop-page -->
+
+<!-- ══════════ PRODUCT DETAIL VIEW ══════════ -->
+<div id="product-page" class="view">
+
+<nav>
+  <span class="logo" onclick="goHome()">She<span>Styles</span></span>
+  <div class="nav-links">
+    <span class="nav-a" onclick="goHome()">Home</span>
+    <span class="nav-a" onclick="goShop()">Shop</span>
+    <span class="nav-a" onclick="goAbout()">About</span>
+    <span class="nav-a" onclick="goContact()">Contact</span>
+    <a href="https://pinterest.com/shestylesofficial" class="nav-pin" target="_blank">📌 Pinterest</a>
+  </div>
+</nav>
+
+<div class="product-back">
+  <button onclick="goShop()">← Back to Shop</button>
+</div>
+
+<div class="product-detail" id="product-detail-content">
+  <!-- filled by JS -->
+</div>
+
+<footer style="margin-top:20px">
+  <div class="footer-grid">
+    <div class="foot-brand">
+      <span class="foot-logo">She<span>Styles</span></span>
+      <p>Curated fashion for every Indian woman — handpicked with love.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Explore</h5>
+      <a onclick="goHome()">Home</a>
+      <a onclick="goShop()">Shop All</a>
+    </div>
+    <div class="foot-col">
+      <h5>Connect & Legal</h5>
+      <a href="https://pinterest.com/shestylesofficial" target="_blank">Pinterest</a>
+      <a onclick="goPrivacy()">Privacy Policy</a>
+    </div>
+  </div>
+  <hr class="footer-divider">
+  <div class="footer-bottom">
+    <span>© 2026 SheStyles. All rights reserved.</span>
+  </div>
+</footer>
+
+</div><!-- /product-page -->
+
+<!-- ══════════ ABOUT VIEW ══════════ -->
+<div id="about-page" class="view">
+
+<nav>
+  <span class="logo" onclick="goHome()">She<span>Styles</span></span>
+  <div class="nav-links">
+    <span class="nav-a" onclick="goHome()">Home</span>
+    <span class="nav-a" onclick="goShop()">Shop</span>
+    <span class="nav-a" onclick="goAbout()" style="color:var(--rose)">About</span>
+    <span class="nav-a" onclick="goContact()">Contact</span>
+    <a href="https://pinterest.com/shestylesofficial" class="nav-pin" target="_blank">📌 Pinterest</a>
+  </div>
+</nav>
+
+<div class="about-page-hero">
+  <div class="about-page-hero-bg"></div>
+  <h1>Our <em>Story</em></h1>
+  <p>A curated fashion destination built with love, for every Indian woman.</p>
+</div>
+
+<div class="about-story">
+  <div class="about-story-text">
+    <div class="s-label">Who We Are</div>
+    <div class="s-title">Fashion That <em>Inspires</em></div>
+    <p class="about-story-body">SheStyles started with one simple idea — Indian women deserve a fashion space that truly understands them. Not just trends, but real outfits for real life. College mornings, café afternoons, festive evenings, and everything in between.</p>
+    <p class="about-story-body">Every single piece on SheStyles is handpicked. We spend hours finding outfits that are stylish, affordable, and actually wearable — so you don't have to scroll endlessly through hundreds of options.</p>
+    <p class="about-story-body">From effortless casuals to festive elegance — we curate outfits that make you feel confident, comfortable, and completely yourself.</p>
+  </div>
+  <div class="about-story-visual">
+    <div class="about-stat-item">
+      <span class="about-stat-n" id="about-product-count">—</span>
+      <span class="about-stat-l">Curated Products</span>
+    </div>
+    <hr class="about-stat-divider">
+    <div class="about-stat-item">
+      <span class="about-stat-n">109+</span>
+      <span class="about-stat-l">Pinterest Pins</span>
+    </div>
+    <hr class="about-stat-divider">
+    <div class="about-stat-item">
+      <span class="about-stat-n">Daily</span>
+      <span class="about-stat-l">New Finds</span>
+    </div>
+    <hr class="about-stat-divider">
+    <div class="about-stat-item">
+      <span class="about-stat-n">100%</span>
+      <span class="about-stat-l">Handpicked with Love</span>
+    </div>
+  </div>
+</div>
+
+<div class="about-chips-section">
+  <div class="about-chips">
+    <span class="about-chip">Everyday Casuals</span>
+    <span class="about-chip">Festive Wear</span>
+    <span class="about-chip">College Outfits</span>
+    <span class="about-chip">Ethnic Fusion</span>
+    <span class="about-chip">Co-ord Sets</span>
+    <span class="about-chip">Café Looks</span>
+    <span class="about-chip">Smart Casual</span>
+  </div>
+</div>
+
+<div class="about-disc-section">
+  <div class="about-disc-inner">
+    <div class="s-label">Affiliate Disclosure</div>
+    <p><strong style="color:var(--deep);font-weight:500">Transparency is important to us.</strong><br><br>
+    SheStyles uses affiliate links from platforms like Myntra, Amazon, and Flipkart. When you click a product link and make a purchase, we may earn a small commission — at <em>absolutely no extra cost to you</em>. Prices are always the same whether you use our link or not.<br><br>
+    This commission helps us keep discovering and curating outfits you love. We only recommend products we genuinely believe are worth your attention. 🤍</p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="foot-brand">
+      <span class="foot-logo">She<span>Styles</span></span>
+      <p>Curated fashion for every Indian woman — handpicked with love, styled for real life.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Explore</h5>
+      <a onclick="goHome()">Home</a>
+      <a onclick="goShop()">Shop All</a>
+    </div>
+    <div class="foot-col">
+      <h5>Connect & Legal</h5>
+      <a href="https://pinterest.com/shestylesofficial" target="_blank">Pinterest</a>
+      <a onclick="goContact()">Contact</a>
+      <a onclick="goPrivacy()">Privacy Policy</a>
+    </div>
+  </div>
+  <hr class="footer-divider">
+  <div class="footer-bottom">
+    <span>© 2026 SheStyles. All rights reserved.</span>
+  </div>
+</footer>
+
+</div><!-- /about-page -->
+
+<!-- ══════════ PRIVACY VIEW ══════════ -->
+<div id="privacy-page" class="view">
+
+<nav>
+  <span class="logo" onclick="goHome()">She<span>Styles</span></span>
+  <div class="nav-links">
+    <span class="nav-a" onclick="goHome()">Home</span>
+    <span class="nav-a" onclick="goShop()">Shop</span>
+    <span class="nav-a" onclick="goAbout()">About</span>
+    <span class="nav-a" onclick="goContact()">Contact</span>
+    <a href="https://pinterest.com/shestylesofficial" class="nav-pin" target="_blank">📌 Pinterest</a>
+  </div>
+</nav>
+
+<div class="privacy-hero">
+  <div class="privacy-hero-bg"></div>
+  <h1>Privacy Policy</h1>
+  <p>Last updated: June 2026</p>
+</div>
+
+<div class="privacy-content">
+  <div class="privacy-section">
+    <h3>Welcome to SheStyles</h3>
+    <p>We are committed to protecting your privacy and being transparent about how our website works. Please read this policy carefully.</p>
+  </div>
+  <div class="privacy-section">
+    <h3>Affiliate Links</h3>
+    <p>SheStyles uses affiliate links from platforms like Myntra, Amazon, and Flipkart. When you click a product link on our website and make a purchase, we may earn a small commission at no extra cost to you. We only recommend products we genuinely believe in and that we think will be a good fit for our audience.</p>
+  </div>
+  <div class="privacy-section">
+    <h3>Information We Collect</h3>
+    <p>We do not collect personal information directly on this website. No registration or login is required to browse or shop. We do not use tracking cookies or analytics on our end. If you fill out our contact form, that information is handled by Google Forms and subject to Google's privacy policy.</p>
+  </div>
+  <div class="privacy-section">
+    <h3>Third-Party Links</h3>
+    <p>Our website contains links to third-party platforms including Myntra, Amazon, Flipkart, and others. Once you click through to these platforms, their own privacy policies apply. We are not responsible for the privacy practices of these external websites.</p>
+  </div>
+  <div class="privacy-section">
+    <h3>Pinterest</h3>
+    <p>We maintain the account @shestylesofficial on Pinterest. Any interaction you have on Pinterest is subject to Pinterest's own privacy policy and terms of service. We use Pinterest to share fashion inspiration and link back to our curated collection.</p>
+  </div>
+  <div class="privacy-section">
+    <h3>Cookies</h3>
+    <p>Our website itself does not use cookies. Third-party platforms you visit through our affiliate links may use their own cookies as per their policies.</p>
+  </div>
+  <div class="privacy-section">
+    <h3>Contact</h3>
+    <p>If you have any questions about this privacy policy or how we operate, please reach out through our <span style="color:var(--rose);cursor:pointer" onclick="goContact()">contact page</span>. We're happy to help.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="foot-brand">
+      <span class="foot-logo">She<span>Styles</span></span>
+      <p>Curated fashion for every Indian woman — handpicked with love, styled for real life.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Explore</h5>
+      <a onclick="goHome()">Home</a>
+      <a onclick="goShop()">Shop All</a>
+    </div>
+    <div class="foot-col">
+      <h5>Connect & Legal</h5>
+      <a href="https://pinterest.com/shestylesofficial" target="_blank">Pinterest</a>
+      <a onclick="goContact()">Contact</a>
+    </div>
+  </div>
+  <hr class="footer-divider">
+  <div class="footer-bottom">
+    <span>© 2026 SheStyles. All rights reserved.</span>
+  </div>
+</footer>
+
+</div><!-- /privacy-page -->
+
+<!-- ══════════ CONTACT VIEW ══════════ -->
+<div id="contact-page" class="view">
+
+<nav>
+  <span class="logo" onclick="goHome()">She<span>Styles</span></span>
+  <div class="nav-links">
+    <span class="nav-a" onclick="goHome()">Home</span>
+    <span class="nav-a" onclick="goShop()">Shop</span>
+    <span class="nav-a" onclick="goAbout()">About</span>
+    <span class="nav-a" onclick="goContact()" style="color:var(--rose)">Contact</span>
+    <a href="https://pinterest.com/shestylesofficial" class="nav-pin" target="_blank">📌 Pinterest</a>
+  </div>
+</nav>
+
+<div class="contact-page-hero">
+  <div class="contact-page-hero-bg"></div>
+  <h1>Get in <em>Touch</em></h1>
+  <p>Have a styling question, collab idea, or just want to say hi? We'd love to hear from you.</p>
+</div>
+
+<div class="contact-form-outer">
+  <div class="contact-form-wrap">
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScxAQNddpzE8qS3-Y3Yynef7-VyYtVWnBFa9VRgATEU0k0OYg/viewform?embedded=true" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0" style="min-height:600px">Loading…</iframe>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="foot-brand">
+      <span class="foot-logo">She<span>Styles</span></span>
+      <p>Curated fashion for every Indian woman — handpicked with love, styled for real life.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Explore</h5>
+      <a onclick="goHome()">Home</a>
+      <a onclick="goShop()">Shop All</a>
+    </div>
+    <div class="foot-col">
+      <h5>Connect & Legal</h5>
+      <a href="https://pinterest.com/shestylesofficial" target="_blank">Pinterest</a>
+      <a onclick="goPrivacy()">Privacy Policy</a>
+    </div>
+  </div>
+  <hr class="footer-divider">
+  <div class="footer-bottom">
+    <span>© 2026 SheStyles. All rights reserved.</span>
+  </div>
+</footer>
+
+</div><!-- /contact-page -->
+
+<!-- ══════════ ADMIN VIEW ══════════ -->
+<div id="admin-page" class="view">
+<div class="admin-wrap">
+  <div class="admin-hdr">
+    <div>
+      <div class="admin-logo">She<span>Styles</span> Admin</div>
+      <div class="admin-sub">Product Manager</div>
+    </div>
+    <button class="back-btn" onclick="goHome()">← Public Site</button>
+  </div>
+  <div class="admin-body">
+    <div class="acard">
+      <h3>➕ Naya Product Add Karo</h3>
+      <div class="afield"><label>Product Name *</label><input type="text" id="f-name" placeholder="e.g. Floral Puff Sleeve Top"></div>
+      <div class="afield"><label>Affiliate Link *</label><input type="url" id="f-link" placeholder="https://..."></div>
+      <div class="afield">
+        <label>Category</label>
+        <select id="f-cat">
+          <option value="All">All / General</option>
+          <option>College Outfits</option><option>Casual</option><option>Festive</option>
+          <option>Cafe & Brunch</option><option>Smart Casual</option><option>Shopping Look</option>
+          <option>Ethnic Wear</option><option>Tops</option><option>Bottoms</option>
+          <option>Co-ord Sets</option><option>Accessories</option><option>Footwear</option>
+        </select>
+      </div>
+      <div class="afield"><label>Image (imgbb HTML full link ya direct URL)</label><input type="text" id="f-img" placeholder='imgbb "HTML full link" yahan paste karo'></div>
+      <div class="afield"><label>Badge (optional)</label><input type="text" id="f-badge" placeholder="Trending / New / Sale"></div>
+      <div class="afield">
+        <label>Home Page Par Featured Karo?</label>
+        <select id="f-featured"><option value="no">No</option><option value="yes">Yes — Homepage par dikhao</option></select>
+      </div>
+      <button class="a-add-btn" id="add-btn" onclick="addProduct()">✓ Add Product</button>
+    </div>
+    <div class="acard">
+      <div class="alist-hdr">
+        <div>
+          <h3>All Products</h3>
+          <div class="astats" id="astats" style="margin-top:12px;margin-bottom:0"></div>
+        </div>
+        <input type="text" class="asearch" id="asearch" placeholder="Search..." oninput="renderAdminList()">
+      </div>
+      <div class="alist" id="alist"><div class="aempty">Loading... ⏳</div></div>
+    </div>
+  </div>
+</div>
+</div><!-- /admin-page -->
+
+<!-- ══════════ EDIT MODAL ══════════ -->
+<div class="modal-overlay" id="edit-modal">
+  <div class="modal-box">
+    <div class="modal-title">
+      <span>✏️ Product Edit Karo</span>
+      <button class="modal-close" onclick="closeEditModal()">✕</button>
+    </div>
+    <input type="hidden" id="edit-id">
+    <div class="afield"><label>Product Name *</label><input type="text" id="edit-name" placeholder="Product name"></div>
+    <div class="afield"><label>Affiliate Link *</label><input type="url" id="edit-link" placeholder="https://..."></div>
+    <div class="afield">
+      <label>Category</label>
+      <select id="edit-cat">
+        <option value="All">All / General</option>
+        <option>College Outfits</option><option>Casual</option><option>Festive</option>
+        <option>Cafe & Brunch</option><option>Smart Casual</option><option>Shopping Look</option>
+        <option>Ethnic Wear</option><option>Tops</option><option>Bottoms</option>
+        <option>Co-ord Sets</option><option>Accessories</option><option>Footwear</option>
+      </select>
+    </div>
+    <div class="afield"><label>Image URL</label><input type="text" id="edit-img" placeholder="imgbb link ya direct URL"></div>
+    <div class="afield"><label>Badge (optional)</label><input type="text" id="edit-badge" placeholder="Trending / New / Sale"></div>
+    <div class="afield">
+      <label>Featured on Homepage?</label>
+      <select id="edit-featured"><option value="no">No</option><option value="yes">Yes — Homepage par dikhao</option></select>
+    </div>
+    <button class="modal-save" id="edit-save-btn" onclick="saveEdit()">✓ Save Changes</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ══════════════════════════
+// CONFIG
+// ══════════════════════════
+const SCRIPT_URL='https://script.google.com/macros/s/AKfycbxGkAtExa9jAcQEqXny28J3GneKm9_qNFWdv39fN3xRTXmrU97LaqU8oHlcpgWJAlpFGg/exec';
+const SITE_URL='https://shestylesco.netlify.app';
+const CAT_ICONS={'College Outfits':'🎓','Casual':'☕','Festive':'🌸','Cafe & Brunch':'🥐','Smart Casual':'💼','Shopping Look':'🛍️','Ethnic Wear':'🥻','Tops':'👚','Bottoms':'👖','Co-ord Sets':'👗','Accessories':'💍','Footwear':'👟','All':'✨'};
+let allProducts=[];
+let shopCatFilter='All';
+let shopSort='newest';
+let priceMin=0,priceMax=999999;
+let currentProductId=null;
+
+// ══════════════════════════
+// PAGE NAV
+// ══════════════════════════
+function showView(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+function goHome(){showView('home-page');renderHome();}
+function goShop(){showView('shop-page');renderShop();}
+function goAbout(){
+  showView('about-page');
+  const el=document.getElementById('about-product-count');
+  if(el)el.textContent=allProducts.length||'—';
+}
+function goPrivacy(){showView('privacy-page');}
+function goContact(){showView('contact-page');}
+
+// Product page — open by ID, also updates URL so Pinterest link works
+function goProduct(id){
+  // loose == so number/string mismatch na ho
+  const p=allProducts.find(x=>String(x.id)===String(id));
+  if(!p){showToast('Product nahi mila!');return;}
+  currentProductId=id;
+  renderProductDetail(p);
+  showView('product-page');
+  // Update URL without reload so the link is shareable/Pinterest-friendly
+  const newUrl=`${window.location.pathname}?p=${id}`;
+  window.history.pushState({productId:id},'',newUrl);
+}
+
+function renderProductDetail(p){
+  const src=imgSrc(p.img||'');
+  document.getElementById('product-detail-content').innerHTML=`
+    <div class="pd-img-wrap">
+      ${p.badge?`<span class="pd-badge">${p.badge}</span>`:''}
+      ${src?`<img src="${src}" alt="${p.name}">`:`<span>${CAT_ICONS[p.category]||'👗'}</span>`}
+    </div>
+    <div class="pd-info">
+      <div class="pd-cat">${p.category||'Fashion'}</div>
+      <div class="pd-name">${p.name}</div>
+      <hr class="pd-divider">
+      <p class="pd-desc">Handpicked by SheStyles — a carefully curated piece for the modern Indian woman. Click below to view full details and shop directly.</p>
+      <a href="${p.link}" class="pd-shop-btn" target="_blank" rel="noopener sponsored">Shop This Look →</a>
+    </div>`;
+}
+
+function copyProductLink(id){
+  const url=`${SITE_URL}/?p=${id}`;
+  navigator.clipboard.writeText(url).then(()=>showToast('✅ Link copy ho gaya! Pinterest pin mein paste karo.')).catch(()=>{
+    // fallback
+    const ta=document.createElement('textarea');
+    ta.value=url;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
+    showToast('✅ Link copy ho gaya!');
+  });
+}
+
+// Handle browser back/forward
+window.addEventListener('popstate',function(e){
+  const params=new URLSearchParams(window.location.search);
+  const pid=params.get('p');
+  const admin=params.get('admin');
+  if(pid){
+    const p=allProducts.find(x=>String(x.id)===String(pid));
+    if(p){renderProductDetail(p);showView('product-page');}
+  } else if(admin==='true'){
+    showView('admin-page');loadAdminProducts();
+  } else {
+    showView('home-page');renderHome();
+  }
+});
+
+// ══════════════════════════
+// MARQUEE
+// ══════════════════════════
+function buildMarquee(){
+  const items=['New Arrivals','Indian Fashion','Festive Looks','College Outfits','Trending Now','Ethnic Wear','Co-ord Sets','Curated Daily','Cafe Looks'];
+  const html=items.map(i=>`<span class="marquee-item"><span class="dot">✦</span>${i}</span>`).join('');
+  document.getElementById('marquee-track').innerHTML=html+html;
+}
+
+// ══════════════════════════
+// API
+// ══════════════════════════
+async function api(params){
+  const qs=new URLSearchParams(params).toString();
+  try{const r=await fetch(`${SCRIPT_URL}?${qs}`);return await r.json();}
+  catch(e){showToast('❌ Connection error!');return null;}
+}
+
+// ══════════════════════════
+// IMAGE EXTRACT
+// ══════════════════════════
+function imgSrc(val){
+  if(!val)return'';
+  const m=val.match(/src=["']([^"']+)["']/i);
+  if(m)return m[1];
+  if(val.startsWith('http'))return val;
+  return'';
+}
+
+// ══════════════════════════
+// LOAD DATA
+// ══════════════════════════
+async function loadData(){
+  const data=await api({action:'get'});
+  allProducts=Array.isArray(data)?data:[];
+  const hc=document.getElementById('hero-count');
+  if(hc)hc.textContent=allProducts.length||'—';
+}
+
+// ══════════════════════════
+// HOME RENDER
+// ══════════════════════════
+function renderHome(){
+  fillHeroCards();
+  renderCatGrid();
+  renderFeatured();
+}
+
+function fillHeroCards(){
+  const featured=allProducts.filter(p=>p.featured==='yes'&&imgSrc(p.img||''));
+  const others=allProducts.filter(p=>p.featured!=='yes'&&imgSrc(p.img||''));
+  // Others ko shuffle karo taaki random aaye
+  for(let i=others.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[others[i],others[j]]=[others[j],others[i]];}
+  // Featured pehle, phir random others, total 4
+  const pool=[...featured,...others].slice(0,4);
+  ['hc0','hc1','hc2','hc3'].forEach((id,i)=>{
+    const el=document.getElementById(id);if(!el)return;
+    const p=pool[i];
+    if(p){const s=imgSrc(p.img);el.innerHTML=`<img src="${s}" alt="${p.name}" loading="lazy">`;el.style.fontSize='0';}
+    else{el.innerHTML=CAT_ICONS['All']||'👗';el.style.fontSize='';}
+  });
+}
+
+function renderCatGrid(){
+  const cats=[...new Set(allProducts.map(p=>p.category).filter(Boolean))].filter(c=>c!=='All');
+  const grid=document.getElementById('cat-grid');
+  if(!grid)return;
+  if(!cats.length){grid.innerHTML='';return;}
+  grid.innerHTML=cats.map(c=>{
+    const cnt=allProducts.filter(p=>p.category===c).length;
+    return`<a class="cat-tile" onclick="goShop();setTimeout(()=>setCatFilter('${c}'),300)">${'<span class="cat-tile-icon">'}${CAT_ICONS[c]||'🏷️'}</span><div class="cat-tile-name">${c}</div><div class="cat-tile-count">${cnt} piece${cnt!==1?'s':''}</div></a>`;
+  }).join('');
+}
+
+function renderFeatured(){
+  // Badge wale pehle, baaki se fill up to 4
+  const badged=allProducts.filter(p=>p.badge&&p.badge.trim());
+  const nonBadged=allProducts.filter(p=>!p.badge||!p.badge.trim());
+  const combined=[...badged,...nonBadged];
+  const show=combined.slice(0,4);
+  const grid=document.getElementById('feat-grid');
+  if(!grid)return;
+  if(!show.length){grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--light)">Products coming soon!</div>';return;}
+  grid.innerHTML=show.map(p=>{
+    const src=imgSrc(p.img||'');
+    const sid=String(p.id);
+    return`<div class="feat-card" data-pid="${sid}">
+      <div class="feat-img">
+        ${p.badge?`<span class="feat-badge">${p.badge}</span>`:''}
+        ${src?`<img src="${src}" alt="${p.name}" loading="lazy">`:`<span>${CAT_ICONS[p.category]||'👗'}</span>`}
+      </div>
+      <div class="feat-info">
+        <div class="feat-name">${p.name}</div>
+        <div class="feat-btn">View Details →</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ══════════════════════════
+// SHOP RENDER
+// ══════════════════════════
+function renderShop(){
+  buildCatFilterList();
+  applyFilters();
+}
+
+function buildCatFilterList(){
+  const cats=['All',...new Set(allProducts.map(p=>p.category).filter(c=>c&&c!=='All'))];
+  const el=document.getElementById('cat-filter-list');
+  if(!el)return;
+  el.innerHTML=cats.map(c=>{
+    const cnt=c==='All'?allProducts.length:allProducts.filter(p=>p.category===c).length;
+    return`<div class="cat-filter-item ${c===shopCatFilter?'active':''}" onclick="setCatFilter('${c}')">
+      <span class="cat-filter-icon">${CAT_ICONS[c]||'🏷️'}</span>
+      <span>${c}</span>
+      <span class="cat-filter-count">${cnt}</span>
+    </div>`;
+  }).join('');
+}
+
+function setCatFilter(cat){
+  shopCatFilter=cat;
+  buildCatFilterList();
+  applyFilters();
+}
+
+function setSort(s){
+  shopSort=s;
+  document.querySelectorAll('.sort-opt').forEach(el=>{
+    el.classList.toggle('active',el.getAttribute('onclick').includes(`'${s}'`));
+  });
+  applyFilters();
+}
+
+function clearAllFilters(){
+  shopCatFilter='All';priceMin=0;priceMax=999999;
+  const pmin=document.getElementById('price-min');
+  const pmax=document.getElementById('price-max');
+  if(pmin)pmin.value='';
+  if(pmax)pmax.value='';
+  buildCatFilterList();applyFilters();
+}
+
+function applyFilters(){
+  let list=shopCatFilter==='All'?[...allProducts]:allProducts.filter(p=>p.category===shopCatFilter);
+  if(shopSort==='oldest')list=[...list].reverse();
+  renderShopGrid(list);
+  updateTopbar(list);
+}
+
+function updateTopbar(list){
+  const el=document.getElementById('shop-count');
+  if(el)el.innerHTML=`Showing <span>${list.length}</span> product${list.length!==1?'s':''}`;
+  const tags=[];
+  if(shopCatFilter!=='All')tags.push(`<span class="active-filter-tag">${shopCatFilter}<button onclick="setCatFilter('All')">×</button></span>`);
+  const af=document.getElementById('active-filters');
+  if(af)af.innerHTML=tags.join('');
+}
+
+function clearPriceFilter(){
+  const pmin=document.getElementById('price-min');
+  const pmax=document.getElementById('price-max');
+  if(pmin)pmin.value='';
+  if(pmax)pmax.value='';
+  priceMin=0;priceMax=999999;applyFilters();
+}
+
+function renderShopGrid(list){
+  const grid=document.getElementById('shop-grid');
+  if(!grid)return;
+  if(!list.length){
+    grid.innerHTML='<div class="no-products"><div style="font-size:2.5rem">🔍</div><p>Koi product nahi mila — filters change karo!</p></div>';return;
+  }
+  grid.innerHTML=list.map(p=>{
+    const src=imgSrc(p.img||'');
+    const sid=String(p.id);
+    return`<div class="prod-card" data-pid="${sid}">
+      <div class="prod-img-wrap">
+        ${p.badge?`<span class="prod-badge">${p.badge}</span>`:''}
+        ${src?`<img src="${src}" alt="${p.name}" loading="lazy">`:`<span>${CAT_ICONS[p.category]||'👗'}</span>`}
+      </div>
+      <div class="prod-info">
+        <div class="prod-name">${p.name}</div>
+        <div class="prod-bottom">
+          <button class="shop-btn">View →</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function parsePrice(p){return parseInt((p||'').replace(/[₹,\s]/g,''))||0;}
+
+// ══════════════════════════
+// ADMIN
+// ══════════════════════════
+async function addProduct(){
+  const name=document.getElementById('f-name').value.trim();
+  const link=document.getElementById('f-link').value.trim();
+  if(!name||!link){showToast('⚠️ Name aur Link zaroori hai!');return;}
+  const price='';
+  const btn=document.getElementById('add-btn');
+  btn.disabled=true;btn.textContent='Adding...';
+  const r=await api({action:'add',name,price,source:'SheStyles',link,
+    category:document.getElementById('f-cat').value||'All',
+    img:document.getElementById('f-img').value.trim(),
+    badge:document.getElementById('f-badge').value.trim(),
+    featured:document.getElementById('f-featured').value});
+  btn.disabled=false;btn.textContent='✓ Add Product';
+  if(r&&r.success){
+    ['f-name','f-link','f-img','f-badge'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('f-cat').value='All';document.getElementById('f-featured').value='no';
+    showToast(`✅ "${name}" add ho gaya!`);
+    await loadData();renderAdminList();
+  }
+}
+
+async function deleteProduct(id,name){
+  if(!confirm(`"${name}" delete karna hai?`))return;
+  const r=await api({action:'delete',id});
+  if(r&&r.success){showToast('🗑️ Delete ho gaya');await loadData();renderAdminList();}
+}
+
+async function loadAdminProducts(){
+  document.getElementById('alist').innerHTML='<div class="aempty">Loading... ⏳</div>';
+  await loadData();renderAdminList();
+}
+
+function renderAdminList(){
+  const q=(document.getElementById('asearch')?.value||'').toLowerCase();
+  const filtered=q?allProducts.filter(p=>(p.name||'').toLowerCase().includes(q)):allProducts;
+  const cats=[...new Set(allProducts.map(p=>p.category))].length;
+  document.getElementById('astats').innerHTML=`<div class="astat"><div class="astat-n">${allProducts.length}</div><div class="astat-l">Products</div></div><div class="astat"><div class="astat-n">${cats}</div><div class="astat-l">Categories</div></div>`;
+  const list=document.getElementById('alist');
+  if(!filtered.length){list.innerHTML=`<div class="aempty">${q?'🔍 Nahi mila':'📦 Koi product nahi. Add karo!'}</div>`;return;}
+  list.innerHTML=filtered.map(p=>{
+    const eid=String(p.id).replace(/'/g,'');
+    const ename=(p.name||'').replace(/'/g,"\\'").replace(/"/g,'&quot;');
+    return`<div class="aitem">
+      <div class="aitem-info">
+        <div class="aitem-name" title="${p.name}">${p.name}</div>
+        <div class="aitem-meta">
+          <span class="aitem-cat">${p.category||''}</span>
+          ${p.featured==='yes'?'<span class="aitem-feat">★ Featured</span>':''}
+          ${p.addedAt?`<span class="aitem-cat">${p.addedAt}</span>`:''}
+        </div>
+      </div>
+      <div class="aitem-actions">
+        <button class="apin" data-copy-id="${eid}" data-copy-name="${ename}">📋 Pin Link</button>
+        <button class="aedit" data-edit-id="${eid}">✏️</button>
+        <button class="adel" data-del-id="${eid}" data-del-name="${ename}">✕</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function adminCopyPin(id,name){
+  const url=`${SITE_URL}/?p=${id}`;
+  navigator.clipboard.writeText(url).then(()=>showToast(`📌 "${name}" ka link copy hua! Pinterest pin mein paste karo.`)).catch(()=>{
+    const ta=document.createElement('textarea');
+    ta.value=url;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
+    showToast('📌 Pin link copy ho gaya!');
+  });
+}
+
+// Admin list event delegation — inline onclick quotes break hoti thi
+document.getElementById('alist').addEventListener('click',function(e){
+  const pin=e.target.closest('[data-copy-id]');
+  const edit=e.target.closest('[data-edit-id]');
+  const del=e.target.closest('[data-del-id]');
+  if(pin) adminCopyPin(pin.dataset.copyId, pin.dataset.copyName);
+  if(edit) openEditModal(edit.dataset.editId);
+  if(del)  deleteProduct(del.dataset.delId, del.dataset.delName);
+});
+
+// ══════════════════════════
+// EDIT MODAL
+// ══════════════════════════
+function openEditModal(id){
+  const p=allProducts.find(x=>String(x.id)===String(id));
+  if(!p){showToast('Product nahi mila!');return;}
+  document.getElementById('edit-id').value=id;
+  document.getElementById('edit-name').value=p.name||'';
+  document.getElementById('edit-link').value=p.link||'';
+  document.getElementById('edit-cat').value=p.category||'All';
+  document.getElementById('edit-img').value=p.img||'';
+  document.getElementById('edit-badge').value=p.badge||'';
+  document.getElementById('edit-featured').value=p.featured||'no';
+  document.getElementById('edit-modal').classList.add('open');
+}
+
+function closeEditModal(){
+  document.getElementById('edit-modal').classList.remove('open');
+}
+
+async function saveEdit(){
+  const id=document.getElementById('edit-id').value;
+  const name=document.getElementById('edit-name').value.trim();
+  const link=document.getElementById('edit-link').value.trim();
+  if(!name||!link){showToast('⚠️ Name aur Link zaroori hai!');return;}
+  const btn=document.getElementById('edit-save-btn');
+  btn.disabled=true;btn.textContent='Saving...';
+  const r=await api({
+    action:'edit',id,name,link,price:'',
+    category:document.getElementById('edit-cat').value||'All',
+    img:document.getElementById('edit-img').value.trim(),
+    badge:document.getElementById('edit-badge').value.trim(),
+    featured:document.getElementById('edit-featured').value
+  });
+  btn.disabled=false;btn.textContent='✓ Save Changes';
+  if(r&&r.success){
+    showToast(`✅ "${name}" update ho gaya!`);
+    closeEditModal();
+    await loadData();renderAdminList();
+  } else {
+    showToast('❌ Update nahi hua — Apps Script mein "edit" action check karo');
+  }
+}
+
+// Close modal on overlay click
+document.getElementById('edit-modal').addEventListener('click',function(e){
+  if(e.target===this)closeEditModal();
+});
+
+// ══════════════════════════
+// TOAST
+// ══════════════════════════
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3200);
+}
+
+// ══════════════════════════
+// INIT
+// ══════════════════════════
+buildMarquee();
+
+// ══════════════════════════
+// PERSISTENT CLICK DELEGATION
+// (grid re-render ho to bhi kaam kare)
+// ══════════════════════════
+document.addEventListener('click',function(e){
+  const card=e.target.closest('[data-pid]');
+  if(card)goProduct(card.dataset.pid);
+});
+
+const urlParams=new URLSearchParams(window.location.search);
+if(urlParams.get('admin')==='true'){
+  showView('admin-page');loadAdminProducts();
+} else if(urlParams.get('p')){
+  // Direct product URL from Pinterest
+  loadData().then(()=>{
+    const pid=urlParams.get('p');
+    const p=allProducts.find(x=>String(x.id)===String(pid));
+    if(p){renderProductDetail(p);showView('product-page');}
+    else{showView('home-page');renderHome();showToast('Product nahi mila!');}
+  });
+} else {
+  loadData().then(()=>{renderHome();});
+}
+</script>
+</body>
+</html>
