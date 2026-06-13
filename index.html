@@ -860,6 +860,7 @@ footer{background:#120C07;color:rgba(250,247,242,0.38);padding:64px 52px 36px}
       <button class="modal-close" onclick="closeEditModal()">✕</button>
     </div>
     <input type="hidden" id="edit-id">
+    <input type="hidden" id="edit-schedule-original">
     <div class="afield"><label>Product Name *</label><input type="text" id="edit-name" placeholder="Product name"></div>
     <div class="afield"><label>Affiliate Link *</label><input type="url" id="edit-link" placeholder="https://..."></div>
     <div class="afield">
@@ -920,15 +921,12 @@ function goAbout(){
 function goPrivacy(){showView('privacy-page');}
 function goContact(){showView('contact-page');}
 
-// Product page — open by ID, also updates URL so Pinterest link works
 function goProduct(id){
-  // loose == so number/string mismatch na ho
   const p=allProducts.find(x=>String(x.id)===String(id));
   if(!p){showToast('Product nahi mila!');return;}
   currentProductId=id;
   renderProductDetail(p);
   showView('product-page');
-  // Update URL without reload so the link is shareable/Pinterest-friendly
   const newUrl=`${window.location.pathname}?p=${id}`;
   window.history.pushState({productId:id},'',newUrl);
 }
@@ -952,14 +950,12 @@ function renderProductDetail(p){
 function copyProductLink(id){
   const url=`${SITE_URL}/?p=${id}`;
   navigator.clipboard.writeText(url).then(()=>showToast('✅ Link copy ho gaya! Pinterest pin mein paste karo.')).catch(()=>{
-    // fallback
     const ta=document.createElement('textarea');
     ta.value=url;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
     showToast('✅ Link copy ho gaya!');
   });
 }
 
-// Handle browser back/forward
 window.addEventListener('popstate',function(e){
   const params=new URLSearchParams(window.location.search);
   const pid=params.get('p');
@@ -1010,12 +1006,11 @@ async function loadData(){
   const data=await api({action:'get'});
   const raw=Array.isArray(data)?data:[];
   const now=new Date();
-  // Scheduled products: scheduledAt set hai aur future mein hai toh hide karo (admin mode mein nahi)
   const isAdmin=new URLSearchParams(window.location.search).get('admin')==='true';
   allProducts=isAdmin?raw:raw.filter(p=>{
-    if(!p.scheduledAt||p.scheduledAt.trim()==='')return true; // no schedule = hamesha dikhao
+    if(!p.scheduledAt||p.scheduledAt.trim()==='')return true;
     const schedTime=new Date(p.scheduledAt);
-    return isNaN(schedTime)||now>=schedTime; // valid time ho aur aa gayi ho
+    return isNaN(schedTime)||now>=schedTime;
   });
   const hc=document.getElementById('hero-count');
   if(hc)hc.textContent=allProducts.length||'—';
@@ -1033,9 +1028,7 @@ function renderHome(){
 function fillHeroCards(){
   const featured=allProducts.filter(p=>p.featured==='yes'&&imgSrc(p.img||''));
   const others=allProducts.filter(p=>p.featured!=='yes'&&imgSrc(p.img||''));
-  // Others ko shuffle karo taaki random aaye
   for(let i=others.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[others[i],others[j]]=[others[j],others[i]];}
-  // Featured pehle, phir random others, total 4
   const pool=[...featured,...others].slice(0,4);
   ['hc0','hc1','hc2','hc3'].forEach((id,i)=>{
     const el=document.getElementById(id);if(!el)return;
@@ -1057,7 +1050,6 @@ function renderCatGrid(){
 }
 
 function renderFeatured(){
-  // Badge wale pehle, baaki se fill up to 4
   const badged=allProducts.filter(p=>p.badge&&p.badge.trim());
   const nonBadged=allProducts.filter(p=>!p.badge||!p.badge.trim());
   const combined=[...badged,...nonBadged];
@@ -1119,10 +1111,6 @@ function setSort(s){
 
 function clearAllFilters(){
   shopCatFilter='All';priceMin=0;priceMax=999999;
-  const pmin=document.getElementById('price-min');
-  const pmax=document.getElementById('price-max');
-  if(pmin)pmin.value='';
-  if(pmax)pmax.value='';
   buildCatFilterList();applyFilters();
 }
 
@@ -1140,14 +1128,6 @@ function updateTopbar(list){
   if(shopCatFilter!=='All')tags.push(`<span class="active-filter-tag">${shopCatFilter}<button onclick="setCatFilter('All')">×</button></span>`);
   const af=document.getElementById('active-filters');
   if(af)af.innerHTML=tags.join('');
-}
-
-function clearPriceFilter(){
-  const pmin=document.getElementById('price-min');
-  const pmax=document.getElementById('price-max');
-  if(pmin)pmin.value='';
-  if(pmax)pmax.value='';
-  priceMin=0;priceMax=999999;applyFilters();
 }
 
 function renderShopGrid(list){
@@ -1174,8 +1154,6 @@ function renderShopGrid(list){
   }).join('');
 }
 
-function parsePrice(p){return parseInt((p||'').replace(/[₹,\s]/g,''))||0;}
-
 // ══════════════════════════
 // ADMIN
 // ══════════════════════════
@@ -1183,10 +1161,9 @@ async function addProduct(){
   const name=document.getElementById('f-name').value.trim();
   const link=document.getElementById('f-link').value.trim();
   if(!name||!link){showToast('⚠️ Name aur Link zaroori hai!');return;}
-  const price='';
   const btn=document.getElementById('add-btn');
   btn.disabled=true;btn.textContent='Adding...';
-  const r=await api({action:'add',name,price,source:'SheStyles',link,
+  const r=await api({action:'add',name,price:'',source:'SheStyles',link,
     category:document.getElementById('f-cat').value||'All',
     img:document.getElementById('f-img').value.trim(),
     badge:document.getElementById('f-badge').value.trim(),
@@ -1228,7 +1205,6 @@ function renderAdminList(){
       const st=new Date(p.scheduledAt);
       if(!isNaN(st)){
         if(now<st){
-          // Future mein schedule hai
           const d=st.toLocaleString('en-IN',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
           schedBadge=`<span class="aitem-sched">⏰ ${d} se</span>`;
         } else {
@@ -1264,7 +1240,6 @@ function adminCopyPin(id,name){
   });
 }
 
-// Admin list event delegation — inline onclick quotes break hoti thi
 document.getElementById('alist').addEventListener('click',function(e){
   const pin=e.target.closest('[data-copy-id]');
   const edit=e.target.closest('[data-edit-id]');
@@ -1287,7 +1262,35 @@ function openEditModal(id){
   document.getElementById('edit-img').value=p.img||'';
   document.getElementById('edit-badge').value=p.badge||'';
   document.getElementById('edit-featured').value=p.featured||'no';
-  document.getElementById('edit-schedule').value=p.scheduledAt||'';
+
+  // FIX: Sheet mein scheduledAt kabhi bhi Sheets ki wajah se convert ho jaata hai
+  // e.g. "2025-06-15T10:00" → "6/15/2025 10:00:00" (US format) ya "15/06/2025 10:00:00"
+  // new Date() se parse karke sahi "YYYY-MM-DDTHH:MM" format banao
+  var schedVal = '';
+  var rawSched = p.scheduledAt || '';
+  if(rawSched.trim() !== '') {
+    // Pehle try karo direct (agar already correct format mein hai)
+    if(rawSched.includes('T') && rawSched.length >= 16) {
+      schedVal = rawSched.substring(0, 16);
+    } else {
+      // Sheets ne date convert kar diya — JavaScript Date se parse karo
+      var parsed = new Date(rawSched);
+      if(!isNaN(parsed.getTime())) {
+        // Local time mein convert karo (UTC nahi)
+        var yr  = parsed.getFullYear();
+        var mo  = String(parsed.getMonth()+1).padStart(2,'0');
+        var dy  = String(parsed.getDate()).padStart(2,'0');
+        var hr  = String(parsed.getHours()).padStart(2,'0');
+        var mn  = String(parsed.getMinutes()).padStart(2,'0');
+        schedVal = yr+'-'+mo+'-'+dy+'T'+hr+':'+mn;
+      }
+    }
+  }
+  document.getElementById('edit-schedule').value = schedVal;
+
+  // Original value hidden field mein save karo — backup ke liye
+  document.getElementById('edit-schedule-original').value = rawSched;
+
   document.getElementById('edit-modal').classList.add('open');
 }
 
@@ -1300,6 +1303,13 @@ async function saveEdit(){
   const name=document.getElementById('edit-name').value.trim();
   const link=document.getElementById('edit-link').value.trim();
   if(!name||!link){showToast('⚠️ Name aur Link zaroori hai!');return;}
+
+  // FIX 3: Schedule preserve karo — agar field khaali dikhti hai browser mein
+  // toh original value use karo, blank save mat karo
+  const schedField = document.getElementById('edit-schedule');
+  const schedOriginal = document.getElementById('edit-schedule-original').value;
+  const scheduledAt = schedField.value || schedOriginal || '';
+
   const btn=document.getElementById('edit-save-btn');
   btn.disabled=true;btn.textContent='Saving...';
   const r=await api({
@@ -1308,7 +1318,7 @@ async function saveEdit(){
     img:document.getElementById('edit-img').value.trim(),
     badge:document.getElementById('edit-badge').value.trim(),
     featured:document.getElementById('edit-featured').value,
-    scheduledAt:document.getElementById('edit-schedule').value||''
+    scheduledAt: scheduledAt
   });
   btn.disabled=false;btn.textContent='✓ Save Changes';
   if(r&&r.success){
@@ -1316,11 +1326,10 @@ async function saveEdit(){
     closeEditModal();
     await loadData();renderAdminList();
   } else {
-    showToast('❌ Update nahi hua — Apps Script mein "edit" action check karo');
+    showToast('❌ Update nahi hua — Apps Script check karo');
   }
 }
 
-// Close modal on overlay click
 document.getElementById('edit-modal').addEventListener('click',function(e){
   if(e.target===this)closeEditModal();
 });
@@ -1335,24 +1344,22 @@ function showToast(msg){
 }
 
 // ══════════════════════════
-// INIT
-// ══════════════════════════
-buildMarquee();
-
-// ══════════════════════════
-// PERSISTENT CLICK DELEGATION
-// (grid re-render ho to bhi kaam kare)
+// CLICK DELEGATION
 // ══════════════════════════
 document.addEventListener('click',function(e){
   const card=e.target.closest('[data-pid]');
   if(card)goProduct(card.dataset.pid);
 });
 
+// ══════════════════════════
+// INIT
+// ══════════════════════════
+buildMarquee();
+
 const urlParams=new URLSearchParams(window.location.search);
 if(urlParams.get('admin')==='true'){
   showView('admin-page');loadAdminProducts();
 } else if(urlParams.get('p')){
-  // Direct product URL from Pinterest
   loadData().then(()=>{
     const pid=urlParams.get('p');
     const p=allProducts.find(x=>String(x.id)===String(pid));
