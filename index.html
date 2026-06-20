@@ -1116,7 +1116,10 @@ function clearAllFilters(){
 
 function applyFilters(){
   let list=shopCatFilter==='All'?[...allProducts]:allProducts.filter(p=>p.category===shopCatFilter);
-  if(shopSort==='oldest')list=[...list].reverse();
+  // FIX: allProducts mein order Sheet ke hisaab se hai (pehla row = sabse purana product)
+  // Newest First ke liye reverse karna padega (naya product list mein sabse last hota hai)
+  if(shopSort==='newest')list=[...list].reverse();
+  // Oldest First ke liye original order hi sahi hai (kuch nahi karna)
   renderShopGrid(list);
   updateTopbar(list);
 }
