@@ -1033,7 +1033,7 @@ function fillHeroCards(){
   ['hc0','hc1','hc2','hc3'].forEach((id,i)=>{
     const el=document.getElementById(id);if(!el)return;
     const p=pool[i];
-    if(p){const s=imgSrc(p.img);el.innerHTML=`<img src="${s}" alt="${p.name}" loading="lazy">`;el.style.fontSize='0';}
+    if(p){const s=imgSrc(p.img);el.innerHTML=`<img src="${s}" alt="${p.name}" loading="eager">`;el.style.fontSize='0';}
     else{el.innerHTML=CAT_ICONS['All']||'👗';el.style.fontSize='';}
   });
 }
@@ -1063,7 +1063,7 @@ function renderFeatured(){
     return`<div class="feat-card" data-pid="${sid}">
       <div class="feat-img">
         ${p.badge?`<span class="feat-badge">${p.badge}</span>`:''}
-        ${src?`<img src="${src}" alt="${p.name}" loading="lazy">`:`<span>${CAT_ICONS[p.category]||'👗'}</span>`}
+        ${src?`<img src="${src}" alt="${p.name}" loading="eager">`:`<span>${CAT_ICONS[p.category]||'👗'}</span>`}
       </div>
       <div class="feat-info">
         <div class="feat-name">${p.name}</div>
@@ -1145,7 +1145,7 @@ function renderShopGrid(list){
     return`<div class="prod-card" data-pid="${sid}">
       <div class="prod-img-wrap">
         ${p.badge?`<span class="prod-badge">${p.badge}</span>`:''}
-        ${src?`<img src="${src}" alt="${p.name}" loading="lazy">`:`<span>${CAT_ICONS[p.category]||'👗'}</span>`}
+        ${src?`<img src="${src}" alt="${p.name}" loading="eager">`:`<span>${CAT_ICONS[p.category]||'👗'}</span>`}
       </div>
       <div class="prod-info">
         <div class="prod-name">${p.name}</div>
