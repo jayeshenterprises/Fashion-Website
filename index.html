@@ -934,7 +934,7 @@ function renderProductDetail(p){
   document.getElementById('product-detail-content').innerHTML=`
     <div class="pd-img-wrap">
       ${p.badge?`<span class="pd-badge">${p.badge}</span>`:''}
-      ${src?`<img src="${src}" alt="${p.name}">`:`<span>${CAT_ICONS[p.category]||'👗'}</span>`}
+      ${src?`<img src="${src}" alt="${p.name}" decoding="async">`:`<span>${CAT_ICONS[p.category]||'👗'}</span>`}
     </div>
     <div class="pd-info">
       <div class="pd-cat">${p.category||'Fashion'}</div>
@@ -998,6 +998,28 @@ function imgSrc(val){
 }
 
 // ══════════════════════════
+// LAZY LOAD (manual IntersectionObserver — more reliable across devices
+// than native loading="lazy", and avoids the old tablet blank-image bug
+// because images are observed AFTER their container is already visible)
+// ══════════════════════════
+let lazyObserver=null;
+function lazyLoadImages(container){
+  if(!container)return;
+  if(!lazyObserver){
+    lazyObserver=new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          const img=entry.target;
+          if(img.dataset.src){img.src=img.dataset.src;img.removeAttribute('data-src');}
+          lazyObserver.unobserve(img);
+        }
+      });
+    },{rootMargin:'600px 0px',threshold:0.01});
+  }
+  container.querySelectorAll('img[data-src]').forEach(img=>lazyObserver.observe(img));
+}
+
+// ══════════════════════════
 // LOAD DATA
 // ══════════════════════════
 async function loadData(){
@@ -1031,7 +1053,7 @@ function fillHeroCards(){
   ['hc0','hc1','hc2','hc3'].forEach((id,i)=>{
     const el=document.getElementById(id);if(!el)return;
     const p=pool[i];
-    if(p){const s=imgSrc(p.img);el.innerHTML=`<img src="${s}" alt="${p.name}" loading="eager">`;el.style.fontSize='0';}
+    if(p){const s=imgSrc(p.img);el.innerHTML=`<img src="${s}" alt="${p.name}" loading="eager" decoding="async" fetchpriority="high">`;el.style.fontSize='0';}
     else{el.innerHTML=CAT_ICONS['All']||'👗';el.style.fontSize='';}
   });
 }
@@ -1061,9 +1083,7 @@ function renderFeatured(){
     return`<div class="feat-card" data-pid="${sid}">
       <div class="feat-img">
         ${p.badge?`<span class="feat-badge">${p.badge}</span>`:''}
-        ${src?`<img src="${src}" alt="${p.name}" loading="eager">`:`<span>${CAT_ICONS[p.category]||'👗'}</span>`}
-      </div>
-      <div class="feat-info">
+        ${src?`<img src="${src}" alt="${p.name}" loading="eager" decoding="async" fetchpriority="high">`:`<span>${CAT_ICONS[p.category]||'👗'}</span>`}
         <div class="feat-name">${p.name}</div>
         <div class="feat-btn">View Details →</div>
       </div>
@@ -1143,7 +1163,7 @@ function renderShopGrid(list){
     return`<div class="prod-card" data-pid="${sid}">
       <div class="prod-img-wrap">
         ${p.badge?`<span class="prod-badge">${p.badge}</span>`:''}
-        ${src?`<img src="${src}" alt="${p.name}" loading="eager">`:`<span>${CAT_ICONS[p.category]||'👗'}</span>`}
+        ${src?`<img data-src="${src}" alt="${p.name}" decoding="async">`:`<span>${CAT_ICONS[p.category]||'👗'}</span>`}
       </div>
       <div class="prod-info">
         <div class="prod-name">${p.name}</div>
@@ -1153,6 +1173,7 @@ function renderShopGrid(list){
       </div>
     </div>`;
   }).join('');
+  lazyLoadImages(grid);
 }
 
 // ══════════════════════════
