@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SheStyles — Curated Fashion for Indian Women</title>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -896,6 +900,7 @@ const SCRIPT_URL='https://script.google.com/macros/s/AKfycbxGkAtExa9jAcQEqXny28J
 const SITE_URL='https://shestyles.vercel.app';
 const CAT_ICONS={'Tops':'👚','Bottoms':'👖','Festive':'🌸','Ethnic Wear':'🥻','Co-ord Sets':'🎽','Footwear':'👟','Jewelry':'💍','Bags':'👜','Dresses':'👗','All':'✨'};
 let allProducts=[];
+let dataLoaded=false;
 let shopCatFilter='All';
 let shopSort='newest';
 let priceMin=0,priceMax=999999;
@@ -1034,6 +1039,9 @@ async function loadData(){
   });
   const hc=document.getElementById('hero-count');
   if(hc)hc.textContent=allProducts.length||'—';
+  dataLoaded=true;
+  const shopPage=document.getElementById('shop-page');
+  if(shopPage&&shopPage.classList.contains('active'))renderShop();
 }
 
 // ══════════════════════════
@@ -1155,7 +1163,12 @@ function renderShopGrid(list){
   const grid=document.getElementById('shop-grid');
   if(!grid)return;
   if(!list.length){
-    grid.innerHTML='<div class="no-products"><div style="font-size:2.5rem">🔍</div><p>Koi product nahi mila — filters change karo!</p></div>';return;
+    if(!dataLoaded){
+      grid.innerHTML='<div class="no-products"><div style="font-size:2.5rem">⏳</div><p>Products load ho rahe hain...</p></div>';
+    } else {
+      grid.innerHTML='<div class="no-products"><div style="font-size:2.5rem">🔍</div><p>Koi product nahi mila — filters change karo!</p></div>';
+    }
+    return;
   }
   grid.innerHTML=list.map(p=>{
     const src=imgSrc(p.img||'');
